@@ -1,0 +1,42 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<md-toolbar color="primary">
+    <span style="margin-right:25px;">Quora</span> 
+    <nav>
+      <a routerLink="/home" class="doc-button mat-button" routerLinkActive="" href="/home">Home</a>
+      <a routerLink="/answers" class="doc-button mat-button" routerLinkActive="" href="/answers">Answers</a>
+      <span class="fill-space"></span>
+      <a routerLink="/" routerLinkActive=""></a>
+    </nav>
+        <md-icon mdPrefix style="margin-left:10px;"><i class="material-icons">search</i></md-icon>
+        <input type="text" [(ngModel)]="searchTerm" class="form-control" id="search" mdInput placeholder="Search Quora">
+        <button class="doc-button mat-button" (click)="onSubmit(searchTerm)" color="primary" type="submit" id="searchBtn">GO!</button>
+      <span>
+        <button md-button (click)="logout()">Logout</button>
+      </span>
+  </md-toolbar>
+
+<md-grid-list cols="8" rowHeight="2:1"> 
+  <div class="left">
+    <md-grid-tile colspan="2">
+      <md-nav-list>
+        <a class="custom-list-item md-item-list-selected" md-list-item href="/answers"> Questions For You </a>
+        <a class="custom-list-item" md-list-item href="/answers"> Answer Requests </a>
+        <a class="custom-list-item" md-list-item href="/answers"> Answer Later </a>
+        <a class="custom-list-item" md-list-item href="/answers"> Drafts </a>
+      </md-nav-list>
+    </md-grid-tile>
+  </div>
+  <div class="centre">
+  <md-grid-tile colspan="4">
+    <md-card *ngFor="let question of questions"> 
+      <md-card-title> {{question.question}} </md-card-title> 
+      <md-card-actions> <button md-button class="answer-button vote-button" (click)="toggleAnswerDialog($event);">Answer</button> <button md-button class="vote-button">Downvote</button> </md-card-actions>
+      <form [formGroup]="answerform" (ngSubmit)="postAnswer(answerform.value, question._id, $event)" class="post-answer">
+          <textarea mdInput formControlName="answer" placeholder="Your answer here"></textarea>
+        <md-card-actions> <button md-button type="submit" type="submit" class="custom-button">Submit Answer</button> </md-card-actions>
+      </form>       
+    </md-card>
+  </md-grid-tile>
+  </div>
+  <div class="right"></div>
+</md-grid-list>

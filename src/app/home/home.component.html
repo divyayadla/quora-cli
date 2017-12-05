@@ -1,0 +1,90 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<md-toolbar color="primary">
+  <span style="margin-right:25px;">Quora</span>
+    
+  <nav>
+    <a routerLink="/home" class="doc-button mat-button" routerLinkActive="" href="/home">Home</a>
+    <a routerLink="/answers" class="doc-button mat-button" routerLinkActive="" href="/answers">Answers</a>
+    <span class="fill-space"></span>
+    <a routerLink="/" routerLinkActive=""></a>
+  </nav>
+      <md-icon mdPrefix style="margin-left:10px;"><i class="material-icons">search</i></md-icon>
+      <input type="text" [(ngModel)]="searchTerm" class="form-control" id="search" mdInput placeholder="Search Quora">
+      <button class="doc-button mat-button" (click)="onSubmit(searchTerm)" color="primary" type="submit" id="searchBtn">GO!</button>
+    <span>
+      <button md-button (click)="logout()">Logout
+      <!-- <md-icon><i class="material-icons">account_circle</i></md-icon> -->
+      <!-- <md-menu #menu="mdMenu" [overlapTrigger]="false">
+        <a md-menu-item routerLink="/profile" class="doc-button mat-button" routerLinkActive="" href="/profile">Profile</a>
+        <a md-menu-item routerLink="/login" class="doc-button mat-button" href="/login">Logout</a>
+      </md-menu> -->
+      </button>
+    </span>
+  
+  
+  <!-- <router-outlet></router-outlet> -->
+</md-toolbar>
+
+<md-grid-list cols="8" rowHeight="2:1"> 
+  <div class="left">
+    <md-grid-tile colspan="2">
+      <md-nav-list>
+        <a class="custom-list-item md-item-list-selected" md-list-item href="/home"> Top Stories </a>
+        <a class="custom-list-item" md-list-item href="/answers"> New Questions </a>
+      </md-nav-list>
+    </md-grid-tile>
+  </div>
+  <div class="centre">
+  <md-grid-tile colspan="4">
+    <md-card>
+      <form [formGroup]="askquestionform" (ngSubmit)="askQuestion(askquestionform.value)" class="ask-question">
+        <md-form-field class="form-element-width">
+          <textarea mdInput formControlName="question" [(ngModel)]="question" placeholder="What is your question?"></textarea>
+        </md-form-field>
+        <md-card-actions> <button md-button type="submit" class="custom-button">Ask Question</button> </md-card-actions>
+      </form>
+    </md-card>
+    
+    <md-card *ngFor="let question of questions"> 
+      <md-card-title> 
+        <a class="custom-list-item" md-list-item routerLink="/question/{{ question._id }}" routerLinkActive="active"> {{question.question}}  </a>
+      </md-card-title>
+      <div class="img-holder">
+          <img  id="image" src="./assets/LinkedInCover.jpg" class="user">
+      </div>
+      <md-card-subtitle class="child"> <span style="margin-right:25px;">{{question.user.name}}</span>
+        <!-- <span>Answered {{question.date}}</span>  -->
+      </md-card-subtitle> 
+
+      <!-- <form [formGroup]="answerformQ" (ngSubmit)="postAnswer(answerformQ.value, question._id)" class="post-answer">
+        <md-form-field class="form-element-width">
+          <textarea mdInput formControlName="answerQ" [(ngModel)]="answerQ" placeholder="Your answer here"></textarea>
+        </md-form-field>
+        <md-card-actions> <button md-button type="submit" type="submit" class="custom-button">Submit Answer</button> </md-card-actions>
+      </form> -->
+
+      <!-- <md-card-content> {{question.answer}} </md-card-content> 
+      <md-card-actions> <button md-button class="vote-button">Upvote</button> <button md-button class="vote-button">Downvote</button> </md-card-actions>  -->
+      <!-- <md-card> -->
+        <md-list *ngFor= "let a1 of question.answers">
+            <md-card-content class="undomessage">
+              <md-list-item> You downvoted this answer. If you change your mind, you can undo your downvote. </md-list-item>
+              <div>Undo</div>
+            </md-card-content>
+            <md-card-content>
+              <md-list-item class="grandchild"> {{a1.answer}} </md-list-item>
+            </md-card-content>
+            <md-card-actions class="custom-card-actions"> <button md-button class="upvote-button" (click)="upvote($event)">Upvote | 0</button> <button md-button class="downvote-button">Downvote</button> </md-card-actions>
+            <!-- <md-card-subtitle> <span style="margin-right:25px;">{{a1.user.name}} answered on {{a1.created_on}}</span> </md-card-subtitle>  -->
+        </md-list>
+      <!-- </md-card> -->
+    </md-card>
+    
+  </md-grid-tile>
+  </div>
+  <div class="right">
+  <md-grid-tile colspan="2"> 
+     
+  </md-grid-tile>
+  </div>
+</md-grid-list>

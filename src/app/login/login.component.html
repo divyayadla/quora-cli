@@ -1,0 +1,26 @@
+<md-toolbar color="accent" theme="light"> <span class="remaining"></span><strong>Quora </strong></md-toolbar>
+        <md-card>
+          <form [formGroup]="signinform" (ngSubmit)="loginUser(signinform.value)" align="center">
+            <div>
+           <p>
+            <md-form-field class="UserName">
+              <input mdInput placeholder="Username" formControlName="username" value="" [(ngModel)]="username" required/>
+            </md-form-field>
+           </p>
+           <p>
+            <md-form-field class="Password">
+              <input mdInput placeholder="Password" type="password" formControlName="password" value="" [(ngModel)]="password" required/>
+            </md-form-field>
+           </p>
+           <p>
+             <button md-raised-button color="accent" type="submit" class="custom-button">Login</button> 
+             &nbsp; &nbsp; &nbsp;
+             <a href="/signup">Register</a>
+           </p>
+          </div>
+        </form>
+        </md-card>
+
+<!-- Copyright 2017 Google Inc. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->

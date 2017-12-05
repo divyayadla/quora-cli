@@ -1,0 +1,39 @@
+
+body{
+    padding: 6em 0;
+    margin: 0 auto; 
+    background-image: url("https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX9364891.jpg"); 
+    background-repeat: repeat;
+  }
+
+  .tabs{
+      background-color: #fff;
+  }
+
+md-toolbar{
+    background: #b92b27!important;
+}
+
+md-card{
+    min-height: 400px;
+    width: 350px;
+    margin: 0 auto;
+}
+
+md-form-field{
+    width: 70%;
+}
+
+.custom-button{
+    background: #b92b27;
+}
+
+md-tab-group{
+    width: 600px;
+    margin: 0 auto;
+}
+
+md-toolbar{
+    width: 400px;
+    margin: 0 auto;
+}
